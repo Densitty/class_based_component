@@ -3,9 +3,18 @@ import Book from "./Book";
 import data from "./data";
 
 export default class BookList extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+    // this method of setting state will be used if we are going 2 make use of the props
+    this.state = {
+      books: data,
+    };
+  }
+
+  // we can set the state here or inside the constructor
+  /* state = {
     books: data,
-  };
+  }; */
 
   render() {
     // const books = this.state.books.map((book_item, index) => {
