@@ -3,21 +3,32 @@ import React, { Component } from "react";
 export default class Book extends Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    this.lowerCount = this.lowerCount.bind(this);
   }
 
   state = {
-    count: 1,
+    count: 0,
   };
 
-  // the click attribute
-  handleClick() {
-    console.log(this.props);
-  }
+  addCount = () => {
+    this.setState({
+      count: this.state.count + 1,
+    });
+  };
 
-  // if we do not want to use the .bind(this), we can either use arrow fxn like below or like in line 48 (commented)
-  hoverMe = () => {
-    console.log(this.props.list.image);
+  lowerCount() {
+    if (this.state.count <= 1) {
+      this.setState({ count: 0 });
+    } else {
+      this.setState({
+        count: this.state.count - 1,
+      });
+    }
+  }
+  resetCount = () => {
+    this.setState({
+      count: 0,
+    });
   };
 
   render() {
@@ -27,15 +38,19 @@ export default class Book extends Component {
     /* list is the name attribute on Book in BookList */
     return (
       <article className="book">
-        <img onMouseOver={this.hoverMe} src={image} width="150" alt="title" />
+        <img src={image} width="150" alt="title" />
         <div>
           <h3>Title: {title}</h3>
-          <p>Author: {author}</p>
-          <button
-            /* the event handler */ onClick={this.handleClick}
-            type="button"
-          >
+          <h4>Author: {author}</h4>
+          <p>Read: {this.state.count} times</p>
+          <button /* the event handler */ onClick={this.addCount} type="button">
             add count
+          </button>
+          <button onClick={this.resetCount} type="button">
+            reset count
+          </button>
+          <button onClick={this.lowerCount} type="button">
+            lower count
           </button>
         </div>
       </article>
