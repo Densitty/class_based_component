@@ -1,40 +1,16 @@
 import React, { Component } from "react";
 
+import Button from "./Button";
 export default class Book extends Component {
-  constructor(props) {
-    super(props);
-    this.lowerCount = this.lowerCount.bind(this);
-  }
-
   state = {
     count: 0,
   };
 
-  addCount = () => {
-    this.setState({
-      count: this.state.count + 1,
-    });
-  };
-
-  lowerCount() {
-    if (this.state.count <= 1) {
-      this.setState({ count: 0 });
-    } else {
-      this.setState({
-        count: this.state.count - 1,
-      });
-    }
-  }
-  resetCount = () => {
-    this.setState({
-      count: 0,
-    });
-  };
-
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     // by the power of destructuring
     const { title, author, image } = this.props.list;
+    // const { handleDelete } = this.props;
     /* list is the name attribute on Book in BookList */
     return (
       <article className="book">
@@ -42,16 +18,7 @@ export default class Book extends Component {
         <div>
           <h3>Title: {title}</h3>
           <h4>Author: {author}</h4>
-          <p>Read: {this.state.count} times</p>
-          <button /* the event handler */ onClick={this.addCount} type="button">
-            add count
-          </button>
-          <button onClick={this.resetCount} type="button">
-            reset count
-          </button>
-          <button onClick={this.lowerCount} type="button">
-            lower count
-          </button>
+          <Button handleDelete={this.props.handleDelete} />
         </div>
       </article>
     );

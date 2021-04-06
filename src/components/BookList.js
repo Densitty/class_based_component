@@ -8,23 +8,22 @@ export default class BookList extends Component {
     // this method of setting state will be used if we are going 2 make use of the props
     this.state = {
       books: data,
+      name: "John",
     };
   }
 
-  // we can set the state here or inside the constructor
-  /* state = {
-    books: data,
-  }; */
+  handleDelete = () => {
+    console.log("I am from the grand parent component");
+  };
 
   render() {
-    // const books = this.state.books.map((book_item, index) => {
-    //   return book_item;
-    // });
     return (
       <section>
         <h3>This is our Booklist</h3>
         {this.state.books.map((item) => {
-          return <Book list={item} key={item.id} />;
+          return (
+            <Book list={item} key={item.id} handleDelete={this.handleDelete} />
+          );
         })}
       </section>
     );
