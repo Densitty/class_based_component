@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import Button from "./Button";
 export default class Book extends Component {
   state = {
     count: 0,
@@ -9,7 +8,7 @@ export default class Book extends Component {
   render() {
     console.log(this.props);
     // by the power of destructuring
-    const { title, author, image } = this.props.list;
+    const { id, title, author, image } = this.props.list;
     // const { handleDelete } = this.props;
     /* list is the name attribute on Book in BookList */
     return (
@@ -18,7 +17,9 @@ export default class Book extends Component {
         <div>
           <h3>Title: {title}</h3>
           <h4>Author: {author}</h4>
-          <Button handleDelete={this.props.delete} />
+          <button type="button" onClick={() => this.props.delete(id)}>
+            delete me
+          </button>
         </div>
       </article>
     );
