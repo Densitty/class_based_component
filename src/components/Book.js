@@ -18,19 +18,9 @@ export default class Book extends Component {
         <div>
           <h3>Title: {title}</h3>
           <h4>Author: {author}</h4>
-          <Button handleDelete={this.props.handleDelete} />
+          <Button handleDelete={this.props.delete} />
         </div>
       </article>
     );
   }
 }
-
-/* Another way of handling event callback */
-/*
-<button
-  onClick={() => this.handleClick()}
-  type="button"
->
-  add count
-</button>;
-*/

@@ -21,9 +21,7 @@ export default class BookList extends Component {
       <section>
         <h3>This is our Booklist</h3>
         {this.state.books.map((item) => {
-          return (
-            <Book list={item} key={item.id} handleDelete={this.handleDelete} />
-          );
+          return <Book list={item} key={item.id} delete={this.handleDelete} />;
         })}
       </section>
     );
