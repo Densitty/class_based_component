@@ -1,22 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Person = (props) => {
+const Person = ({ person: { image, name, address, age } }) => {
   return (
     <article>
-      <img src={props.image} alt="person" />
-      <h4>{props.name}</h4>
-      <h4>{props.address}</h4>
-      <h5>{props.age}</h5>
+      <img src={image} alt="person" />
+      <h4>Name: {name}</h4>
+      <h4>Adress: {address}</h4>
+      <h5>Age: {age || 18}</h5>
     </article>
   );
 };
 
 Person.propTypes = {
-  image: PropTypes.string,
-  name: PropTypes.string,
-  address: PropTypes.string,
-  age: PropTypes.number,
+  person: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+    age: PropTypes.number.isRequired,
+  }),
+  /* image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  age: PropTypes.number.isRequired, */
 };
 
 export default Person;

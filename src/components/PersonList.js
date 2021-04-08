@@ -17,7 +17,14 @@ class PersonList extends Component {
         image: "https://randomuser.me/api/portraits/women/30.jpg",
         name: "Brooklyn Riley",
         address: "3050 Prospect Rd",
-        age: 32,
+        // age: 32,
+      },
+      {
+        id: 3,
+        image: "https://randomuser.me/api/portraits/women/85.jpg",
+        name: "Erica Berry",
+        address: "1046 Fairview St",
+        age: 35,
       },
     ],
   };
@@ -26,12 +33,14 @@ class PersonList extends Component {
     return (
       <section>
         {this.state.data.map((person) => {
+          console.log(person.address);
           return (
             <Person
-              name={person.name}
+              /* name={person.name}
               image={person.image}
-              address={person.adddress}
-              age={person.name}
+              address={person.address}
+              age={person.age} */
+              person={person}
               key={person.id}
             />
           );
