@@ -1,15 +1,9 @@
 import React, { Component } from "react";
-import BookList from "./components/BookList";
+import PersonList from "./components/PersonList";
 
 class App extends Component {
   render() {
-    return (
-      <section>
-        <h1>Book Application</h1>
-        <BookList />
-      </section>
-    );
+    return <PersonList />;
   }
 }
-
 export default App;
