@@ -1,9 +1,15 @@
 import React, { Component } from "react";
-import PersonList from "./components/PersonList";
+import Form from "./components/Input";
 
+// class Form extends Component {
+//   render() {
+//     return <h1>Hello Form</h1>;
+//   }
+// }
 class App extends Component {
   render() {
-    return <PersonList />;
+    return <Form />;
   }
 }
+
 export default App;
