@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Form from "./components/Input";
+import Counter from "./components/Counter";
 
 class App extends Component {
   render() {
-    return <Form />;
+    return <Counter amount={2} />;
   }
 }
 
