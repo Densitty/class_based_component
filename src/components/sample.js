@@ -1,28 +1,27 @@
 import React, { useState } from "react";
 
 const UseState = () => {
-  const john = {
-    name: "John Doe",
-    age: 24,
-    message: "I love writing JavaScript",
-  };
+  const [value, setValue] = useState(0);
 
-  // console.log(john);
-  const [person, setPerson] = useState(john);
-
-  const changeMessage = () => {
-    // spread the person state value first and then add the property to be changed
-    setPerson({ ...person, message: "I also like learning Python" });
+  const resetValue = () => {
+    setValue(0);
   };
 
   return (
     <>
-      <h3>{person.name}</h3>
-      <h3>{person.age}</h3>
-      <h3>{person.message}</h3>
-      <button className="btn" onClick={changeMessage}>
-        clear items
-      </button>
+      <section style={{ margin: "4rem 0" }}>
+        <h2>regular counter</h2>
+        <h1>{value}</h1>
+        <button className="btn" onClick={() => setValue(value + 1)}>
+          increase
+        </button>
+        <button className="btn" onClick={resetValue}>
+          reset
+        </button>
+        <button className="btn" onClick={() => setValue(value - 1)}>
+          decrease
+        </button>
+      </section>
     </>
   );
 };
