@@ -1,23 +1,38 @@
 import React, { useState } from "react";
+import { data } from "../data";
 
 const UseState = () => {
-  // console.log(useState(value));
-  // const value = useState("intro to hooks")[0];
-  // const handler = useState("intro to hooks")[1];
-  const [value, setValue] = useState("intro to hooks");
+  // console.log(useState(data));
+  const [people, setPeople] = useState(data);
 
-  const handleClick = () => {
-    if (value === "intro to hooks") {
-      setValue("React Hooks is Fun");
-    } else {
-      setValue("intro to hooks");
-    }
+  const removeItem = (id) => {
+    /* const peopleData = [...people];
+    const personIndex = peopleData.findIndex((person) => {
+      return person.id === id;
+    });
+
+    peopleData.splice(personIndex, 1);
+    // console.log(peopleData);
+    setPeople(peopleData); */
+
+    // alternatively
+    let newPeople = people.filter((person) => person.id !== id);
+    setPeople(newPeople);
   };
+
   return (
     <>
-      <h1>{value}</h1>
-      <button className="btn" onClick={handleClick}>
-        change title
+      {people.map((person) => {
+        const { id, name } = person;
+        return (
+          <div key={id} className="item">
+            <h4>{name}</h4>
+            <button onClick={() => removeItem(id)}>remove</button>
+          </div>
+        );
+      })}
+      <button className="btn" onClick={() => setPeople([])}>
+        clear items
       </button>
     </>
   );
