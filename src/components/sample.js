@@ -1,37 +1,26 @@
 import React, { useState } from "react";
-import { data } from "../data";
 
 const UseState = () => {
-  // console.log(useState(data));
-  const [people, setPeople] = useState(data);
+  const john = {
+    name: "John Doe",
+    age: 24,
+    message: "I love writing JavaScript",
+  };
 
-  const removeItem = (id) => {
-    /* const peopleData = [...people];
-    const personIndex = peopleData.findIndex((person) => {
-      return person.id === id;
-    });
+  // console.log(john);
+  const [person, setPerson] = useState(john);
 
-    peopleData.splice(personIndex, 1);
-    // console.log(peopleData);
-    setPeople(peopleData); */
-
-    // alternatively
-    let newPeople = people.filter((person) => person.id !== id);
-    setPeople(newPeople);
+  const changeMessage = () => {
+    // spread the person state value first and then add the property to be changed
+    setPerson({ ...person, message: "I also like learning Python" });
   };
 
   return (
     <>
-      {people.map((person) => {
-        const { id, name } = person;
-        return (
-          <div key={id} className="item">
-            <h4>{name}</h4>
-            <button onClick={() => removeItem(id)}>remove</button>
-          </div>
-        );
-      })}
-      <button className="btn" onClick={() => setPeople([])}>
+      <h3>{person.name}</h3>
+      <h3>{person.age}</h3>
+      <h3>{person.message}</h3>
+      <button className="btn" onClick={changeMessage}>
         clear items
       </button>
     </>
