@@ -1,10 +1,12 @@
-import React, { Component } from "react";
-import Counter from "./components/Counter";
+import React from "react";
+import UseState from "./components/sample";
 
-class App extends Component {
-  render() {
-    return <Counter amount={2} />;
-  }
-}
+const App = () => {
+  return (
+    <div className="container">
+      <UseState />
+    </div>
+  );
+};
 
 export default App;
