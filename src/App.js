@@ -1,10 +1,10 @@
 import React from "react";
-import UseEffectCleanup from "./components/sample";
+import FetchData from "./components/sample";
 
 const App = () => {
   return (
     <div className="container">
-      <UseEffectCleanup />
+      <FetchData />
     </div>
   );
 };
