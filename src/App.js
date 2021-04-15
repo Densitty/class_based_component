@@ -1,10 +1,10 @@
 import React from "react";
-import FetchData from "./components/sample";
+import MultipleReturns from "./components/sample";
 
 const App = () => {
   return (
     <div className="container">
-      <FetchData />
+      <MultipleReturns />
     </div>
   );
 };

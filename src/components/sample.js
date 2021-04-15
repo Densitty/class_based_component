@@ -1,41 +1,55 @@
 import React, { useState, useEffect } from "react";
 
-const url = "https://api.github.com/users";
-
-const FetchData = () => {
-  const [users, setUsers] = useState([]);
-
-  const getUsers = async () => {
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log(data);
-    setUsers(data);
-  };
+const url = "https://api.github.com/users/QuincyLarson";
+const MultipleReturns = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+  const [user, setUser] = useState("default user");
 
   useEffect(() => {
-    getUsers();
+    fetch(url)
+      .then((response) => {
+        if (response.status >= 200 && response.status <= 299) {
+          return response.json();
+        } else {
+          setIsLoading(false);
+          setIsError(true);
+          throw new Error(response.statusText);
+        }
+      })
+      .then((data) => {
+        // console.log(data);
+        const { login } = data;
+        setUser(login);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        // error here refers to the network (if there is no connection)
+        console.log(err);
+      });
   }, []);
 
-  return (
-    <>
-      <h3>Github Users</h3>
-      <ul className="users">
-        {users.map((user) => {
-          const { id, login, avatar_url, html_url } = user;
+  if (isLoading) {
+    return (
+      <div>
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
 
-          return (
-            <li key={id}>
-              <img src={avatar_url} alt={login} />
-              <div>
-                <h4>{login}</h4>
-                <a href={html_url}>profile</a>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-    </>
+  if (isError) {
+    return (
+      <div>
+        <h2>Error...</h2>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <h1>{user}</h1>
+    </div>
   );
 };
 
-export default FetchData;
+export default MultipleReturns;
