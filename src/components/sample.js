@@ -1,30 +1,71 @@
-import React, { useState, useEffect } from "react";
-// by default runs after every re-render
-// cleanup function
-// second parameter
-const UseEffectCleanup = () => {
-  const [width, setWidth] = useState(window.innerWidth);
+import React, { useState } from "react";
 
-  const checkSize = () => {
-    setWidth(window.innerWidth);
+const ControlledInput = () => {
+  const [firstName, setFirstName] = useState("");
+  const [email, setEmail] = useState("");
+  const [people, setPeople] = useState([]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (firstName && email) {
+      console.log(firstName);
+      console.log(email);
+      const person = {
+        id: new Date().getTime().toString(),
+        firstName,
+        email,
+      };
+      setPeople((people) => {
+        // return people.push(person)
+        return [...people, person];
+      });
+      setFirstName("");
+      setEmail("");
+    }
   };
 
-  useEffect(() => {
-    console.log("window resized to :-", width);
-    window.addEventListener("resize", checkSize);
-    /* the return fxn gets invoked immediately the eventListener runs (with useEffect, we trigger it) and get the function body rendered first before another eventListener is triggered again (thus closing down the previous resize event before the next resize is triggered) */
-    return () => {
-      console.log("cleanup");
-      window.removeEventListener("resize", checkSize);
-    };
-  });
-  console.log("component render");
   return (
     <>
-      <h1>UseEffect Cleanup</h1>
-      <h2>{width} px</h2>
+      <article>
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="form-control">
+            <label htmlFor="firstName">Name:</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </div>
+
+          <div className="form-control">
+            <label htmlFor="email">Email:</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          <button type="submit">add person</button>
+        </form>
+
+        {people.map((person) => {
+          const { id, firstName, email } = person;
+          return (
+            <div className="item" key={id}>
+              <h4>{firstName}</h4>
+              <p>{email}</p>
+            </div>
+          );
+        })}
+      </article>
     </>
   );
 };
 
-export default UseEffectCleanup;
+export default ControlledInput;
