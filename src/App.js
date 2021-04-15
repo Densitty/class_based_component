@@ -1,10 +1,10 @@
 import React from "react";
-import MultipleReturns from "./components/sample";
+import ShowHide from "./components/sample";
 
 const App = () => {
   return (
     <div className="container">
-      <MultipleReturns />
+      <ShowHide />
     </div>
   );
 };
