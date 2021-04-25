@@ -1,15 +1,12 @@
-import React, { Component } from "react";
-import BookList from "./components/BookList";
-import "./App.css";
+import React from "react";
+import Setup from "./prop_drilling";
 
-class App extends Component {
-  render() {
-    return (
-      <section>
-        <BookList />
-      </section>
-    );
-  }
-}
+const App = () => {
+  return (
+    <div className="container">
+      <Setup />
+    </div>
+  );
+};
 
 export default App;
