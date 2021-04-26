@@ -1,5 +1,5 @@
 import React from "react";
-import Setup from "./prop_drilling";
+import Setup from "./fetchExample";
 
 const App = () => {
   return (
