@@ -1,5 +1,5 @@
 import React from "react";
-import Setup from "./setup/";
+import Setup from "./Performance";
 
 const App = () => {
   return (
