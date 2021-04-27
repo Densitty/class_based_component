@@ -1,5 +1,5 @@
 import React from "react";
-import Setup from "./fetchExample";
+import Setup from "./setup/";
 
 const App = () => {
   return (
